@@ -8,7 +8,7 @@
 
 | Component | Module | Status | Key Artifact |
 |-----------|--------|--------|-------------|
-| **The Bet** | M1 | [ ] | `01-the-bet/` |
+| **The Bet** | M1 | [x] complete | `01-the-bet/` |
 | **The Moat** | M2 | [ ] | `02-the-moat/` |
 | **The Margin** | M3 | [ ] | `03-the-margin/` |
 | **The Contract** | M4 | [ ] | `04-the-contract/` |
@@ -21,13 +21,13 @@
 
 **What we're building, for whom, why now.**
 
-- **Product:**
-- **AI Value Archetype:**
-- **Vulnerability Scores:** Moat __/5 · Data __/5 · Platform __/5
-- **Top Risk:**
-- **Confidence:** H / M / L
-- **Prototype:** [link]
-- **Kill Criteria:**
+- **Product:** Epic Safety & Denial Copilot — cross-module AI bolt-on for Epic that improves note quality, catches patient-safety gaps, and prevents insurance-denial-causing documentation errors
+- **AI Value Archetype:** Copilot + Oracle
+- **Vulnerability Scores:** Moat 4/5 · Data 4/5 · Platform 3/5
+- **Top Risk:** Platform Exposure — Epic owns the cross-module data plumbing and could extend its own Cognitive Computing / Deterioration Index framework into this space
+- **Confidence:** M
+- **Prototype:** [Chartguard](https://claude.ai/code/artifact/98b72420-d7fa-4d75-99a6-66f7ea532b47) — clinical note copilot flagging safety conflicts + denial-risk gaps
+- **Kill Criteria:** No significant denial/safety-incident reduction after a 60–90 day pilot, Epic ships a native equivalent within the pilot window, or the hospital's data volume can't support a meaningful signal within two quarters
 
 → Details: [`01-the-bet/`](01-the-bet/)
 
