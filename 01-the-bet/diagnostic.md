@@ -3,8 +3,8 @@
 ## Product
 <!-- Name the product you're diagnosing. Real product at your company — not a hypothetical. -->
 
-**Product:** Epic Safety & Denial Copilot — a bolt-on AI module for Epic (the hospital's existing EHR) that improves clinical note quality in real time and, from that same signal, (1) cross-checks the note against pharmacy, lab, and orders data for patient-safety gaps, and (2) flags documentation gaps before they become insurance denials.
-**Your Role:** Product leader for AI features across Epic's clinical modules (ED, inpatient, OR, pharmacy, lab, radiology, registration) at a hospital already running Epic and 3M/Solventum 360 Encompass for coding.
+**Product:** Seha Hub Safety & Denial Copilot — a bolt-on AI module for Seha Hub (the hospital's existing EHR) that improves clinical note quality in real time and, from that same signal, (1) cross-checks the note against pharmacy, lab, and orders data for patient-safety gaps, and (2) flags documentation gaps before they become insurance denials.
+**Your Role:** Product leader for AI features across Seha Hub's clinical modules (ED, inpatient, OR, pharmacy, lab, radiology, registration) at a hospital already running Seha Hub and 3M/Solventum 360 Encompass for coding.
 
 ---
 
@@ -31,14 +31,14 @@
 ### Platform Exposure — 3/5
 *Encroachment risk × pivot speed. If Apple/Google/OpenAI ships your hero feature native — then what?*
 
-**Score rationale:** Better than a head-on note-writing tool, because this occupies a gap Nuance DAX explicitly doesn't fill (cross-module safety + denial prevention). But Epic already builds cross-module clinical models (e.g., the Epic Deterioration Index pulls vitals + labs across modules), so Epic's own Cognitive Computing platform is a plausible future entrant into this exact space if it decides to extend into denial-linked safety checks. Not immediate, but real and platform-owned.
+**Score rationale:** Better than a head-on note-writing tool, because this occupies a gap the leading ambient-scribe vendors (e.g., Nuance DAX) explicitly don't fill (cross-module safety + denial prevention). But two encroachment paths are real: Seha Hub's own product team could extend its native clinical models into this exact space since it already owns the cross-module data; and Oracle Health (Cerner) — a rival incumbent EHR — already ships comparable cross-module clinical AI, setting a market bar Seha Hub has to clear or risk hospitals favoring the rival platform instead. Not immediate, but real on both fronts.
 
-**Named attacker (from partner challenge):** Epic Systems — via an extension of its existing Cognitive Computing / Deterioration Index framework into denial-linked documentation checks.
+**Named attacker (from partner challenge):** Oracle Health (Cerner) — proof this kind of cross-module clinical model is already shipping natively on a rival EHR, and the competitive bar Seha Hub has to clear.
 
 ---
 
 ## Top Vulnerability
-Platform Exposure: Epic owns the underlying data plumbing across every module this product touches, so even a well-differentiated wedge is one roadmap decision away from being absorbed natively.
+Platform Exposure: Seha Hub owns the underlying data plumbing across every module this product touches, so a well-differentiated wedge is one roadmap decision away from being absorbed natively — and a rival EHR has already proven the cross-module model works, raising the bar for how good Seha Hub's version has to be.
 
 ## Confidence Level
 Medium — the moat and data advantage are real once the two feedback loops (denial outcomes, safety incidents) are actually built and running, but that build is not yet done, and platform absorption risk is a long-term threat rather than an immediate one.

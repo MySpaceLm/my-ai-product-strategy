@@ -21,13 +21,13 @@
 
 **What we're building, for whom, why now.**
 
-- **Product:** Epic Safety & Denial Copilot — cross-module AI bolt-on for Epic that improves note quality, catches patient-safety gaps, and prevents insurance-denial-causing documentation errors
+- **Product:** Seha Hub Safety & Denial Copilot — cross-module AI bolt-on for Seha Hub that improves note quality, catches patient-safety gaps, and prevents insurance-denial-causing documentation errors
 - **AI Value Archetype:** Copilot + Oracle
 - **Vulnerability Scores:** Moat 4/5 · Data 4/5 · Platform 3/5
-- **Top Risk:** Platform Exposure — Epic owns the cross-module data plumbing and could extend its own Cognitive Computing / Deterioration Index framework into this space
+- **Top Risk:** Platform Exposure — Seha Hub owns the cross-module data plumbing and could build this natively, and Oracle Health (Cerner) already ships a comparable capability on a rival EHR
 - **Confidence:** M
 - **Prototype:** [Chartguard](https://claude.ai/code/artifact/98b72420-d7fa-4d75-99a6-66f7ea532b47) — clinical note copilot flagging safety conflicts + denial-risk gaps
-- **Kill Criteria:** No significant denial/safety-incident reduction after a 60–90 day pilot, Epic ships a native equivalent within the pilot window, or the hospital's data volume can't support a meaningful signal within two quarters
+- **Kill Criteria:** No significant denial/safety-incident reduction after a 60–90 day pilot, Seha Hub ships a native equivalent within the pilot window, or the hospital's data volume can't support a meaningful signal within two quarters
 
 → Details: [`01-the-bet/`](01-the-bet/)
 
