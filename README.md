@@ -9,7 +9,7 @@
 | Component | Module | Status | Key Artifact |
 |-----------|--------|--------|-------------|
 | **The Bet** | M1 | [x] complete | `01-the-bet/` |
-| **The Moat** | M2 | [ ] | `02-the-moat/` |
+| **The Moat** | M2 | [x] complete | `02-the-moat/` |
 | **The Margin** | M3 | [ ] | `03-the-margin/` |
 | **The Contract** | M4 | [ ] | `04-the-contract/` |
 | **The Guardrails** | M5 | [ ] | `05-the-guardrails/` |
@@ -37,11 +37,11 @@
 
 **Why this won't get copied in 6 months.**
 
-- **Data Flywheel Score:** __/20
-- **Weakest Loop:**
-- **Competitive Position:** [describe axes + placement]
-- **Encroachment Defense:**
-- **Vendor Portability:** Ready / Partial / Locked
+- **Data Flywheel Score:** 13/20 (Correction 2 · Preference 5 · Domain Context 1 · Network 5)
+- **Weakest Loop:** Domain Context — cross-unit transfer designed (policy-gated) but not yet built
+- **Competitive Position:** Strong Preference + Network loops (per-unit/clinician tuning, validated cross-hospital pattern promotion); weak on cross-unit transfer within a hospital
+- **Encroachment Defense:** Vs. Microsoft/Nuance DAX — Chartguard already owns compliance-grade accountability (signature-gated safety, physician-query workflow) that DAX would have to build from scratch; validated-pattern network effect beats DAX's unvalidated breadth
+- **Vendor Portability:** Ready — Claude (Anthropic) is the core model behind a single abstraction interface, with live multi-model routing + failover and an automated eval harness (LangSmith); only gap is a live cutover drill, not yet run
 
 → Details: [`02-the-moat/`](02-the-moat/)
 
