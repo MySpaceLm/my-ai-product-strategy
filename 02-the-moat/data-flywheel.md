@@ -70,4 +70,16 @@
 
 **Weeks 9-12 - why users don't come back:** CDI staff get used to DAX surfacing insights learned from other hospitals entirely — breadth a brand-new, hospital-walled Network loop can't match yet. Chartguard's Domain Context gap becomes visible daily: it's still not catching the OR-specific pattern ED already learned weeks ago. DAX doesn't need to win on flag quality — it just needs "already integrated, already learning across everything" to feel like less friction than "best of breed, but narrow."
 
-**Your defense:** *(to be completed — pick up here next session)*
+**Your defense:**
+
+*Why their plan is weaker than it looks:*
+
+1. **DAX is bolting cross-unit insight onto a note-writing tool — Chartguard is bolting it onto a system that already does compliance-grade accountability.** DAX has never owned the physician-query workflow, never done real-time pharmacy/lab/order reconciliation, and has no signature-gated dismissal architecture. Adding "Cross-Unit Insight" to DAX is a bolt-on feature; adding cross-unit transfer to Chartguard is completing a system it already has the governance model for. Chartguard's engineering lift to close Domain Context is smaller than DAX's lift to build what Chartguard already has.
+2. **Breadth without validation is a liability, not an advantage — and that's the pitch to compliance.** DAX's cross-hospital pattern library surfaces everything the model correlates across a huge undifferentiated corpus. Chartguard's Network loop only ships a pattern once it's validated against real practice and real outcomes at a live hospital. To a CDI/compliance team, that's the difference between a tool they can defend in an audit and one they can't — and alert-fatigue-from-an-unvalidated-firehose is exactly the failure mode Chartguard's signature-gated safety design was built to prevent.
+3. **Chartguard already owns the switching cost DAX is trying to buy.** DAX's free 30-day pilot only works if CDI/compliance have nothing to lose by trying it — but Chartguard already routes their physician-query workflow and audit trail (Contextual Moat, 4/5). Ripping that out mid-workflow to test a scribe add-on is a bigger ask than DAX assumed.
+
+*The 90-day counter-plan:*
+
+- **Weeks 1-4:** Ship the cross-unit pipeline fast by reusing what already exists — point the exact detection-and-proposal mechanism powering the Network loop (5/5) inward, at units within one hospital, instead of only across hospitals. Not a new capability, an existing one repointed.
+- **Weeks 5-8:** Go to compliance with the validation story, not just the feature list. While DAX pitches "learns everywhere," Chartguard pitches "every pattern you see was proven safe and effective before it reached you — here's the audit trail." Get one documented case where a suppressed-false-positive or a caught safety conflict shows up favorably in an actual compliance review, and use it as reference.
+- **Weeks 9-12:** Close the OR/radiology gap DAX specifically targeted — prioritize per-unit tuning for exactly the units DAX picked as weakest. Killing their stated wedge directly is more convincing to users than a generic roadmap update.
