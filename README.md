@@ -11,7 +11,7 @@
 | **The Bet** | M1 | [x] complete | `01-the-bet/` |
 | **The Moat** | M2 | [x] complete | `02-the-moat/` |
 | **The Margin** | M3 | [x] complete | `03-the-margin/` |
-| **The Contract** | M4 | [ ] | `04-the-contract/` |
+| **The Contract** | M4 | [x] complete | `04-the-contract/` |
 | **The Guardrails** | M5 | [ ] | `05-the-guardrails/` |
 | **The Pitch** | M6 | [ ] | `06-the-pitch/` |
 
@@ -65,11 +65,11 @@
 
 **Why users will trust a probabilistic system.**
 
-- **Reliability Target:**
-- **Golden Dataset:** __ rows, __ adversarial
-- **Confidence UX:** [approach]
-- **HITL Architecture:**
-- **Failure Mode Coverage:**
+- **Reliability Target:** 95% overall accuracy · safety-flag false-negative rate <0.1% (dedicated metric, tighter than generic accuracy) · hallucination <0.5% · latency p95 <1000ms · drift <0.5%/wk
+- **Golden Dataset:** 10 rows, 3 adversarial (v1 ship target ~150) — spans both flag types, a clean-note negative case, and cases testing the known M2 gaps (Preference, Domain Context, Network loops)
+- **Confidence UX:** Tiered confidence + human-in-loop trigger, combined; safety-flag thresholds locked (non-adjustable by users), denial-risk thresholds user-adjustable; reasoning/evidence always shown
+- **HITL Architecture:** Confidence <60% OR safety-flag uncertainty OR suspected false negative → rotating clinical safety/CDI on-call; corrections feed the weekly gold-set audit, closing the M2 Correction-loop gap
+- **Failure Mode Coverage:** Prompt injection via note text, contradictory allergy documentation, buried conflict in a long/complex note — real partner red-team pass still an open item
 
 → Details: [`04-the-contract/`](04-the-contract/)
 
