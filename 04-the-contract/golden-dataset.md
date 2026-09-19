@@ -67,6 +67,23 @@
 
 **Consequence patterns:** Page clinical safety lead · Auto-rollback of the safety-flag engine specifically · Gold-set audit · Human reviewer queue escalation
 
+## LLM-as-a-Judge
+
+*Pattern: LangSmith provides the judge + traces; Chartguard owns the labels (the golden dataset above) — "who judges the judge? Your golden dataset."*
+
+- **Regression:** every model or prompt change is scored against the full golden dataset (10+3 now, ~150 at v1) before it ships — continuous, high-volume, catches a quality dip before a clinician ever feels it in production.
+- **Drift:** the Reliability Contract's Drift velocity metric (<0.5%/wk) is this in practice — LangSmith trend-alerts on the 4-week rolling accuracy trend, so degradation surfaces as a graph line, not as a complaint.
+- **Quality gates:** live routing decision at request time — auto-ship / human review / block — driven directly by the Confidence UX tiers above (CONFIDENT auto-ships, UNCERTAIN surfaces with softened framing, NOT CONFIDENT routes to the human queue or blocks).
+
+## Eval Dashboard Spec
+
+*The bar: could you screen-share this in a sales call? SRE-dashboard energy (Datadog/Stripe status-page) for AI quality, not a private spreadsheet.*
+
+- **Metrics:** overall accuracy, safety-flag false-negative rate, hallucination rate, latency p95, drift velocity, confidence spread across the three tiers, HITL%, override rate — all six Reliability Contract metrics plus the two Confidence UX operational stats.
+- **Judge setup:** LangSmith · safety rubric + accuracy rubric · golden dataset (10+3 rows today, ~150 at v1) · alert thresholds pulled directly from the Reliability Contract table above.
+- **Drift alerts:** automatic ping to the clinical safety on-call the moment the 4-week rolling trend crosses the <0.5%/wk line — before it shows up as a real-world quality complaint.
+- **UX hooks:** confidence scores and evidence snippets surfaced in-product (already part of Confidence UX above); a thumbs-up/down capture on every flag feeds directly into the weekly gold-set audit, closing the same Correction-loop gap the Confidence UX design commits to fixing.
+
 ## HITL Architecture
 <!-- When does a human step in? What's the escalation path? -->
 
