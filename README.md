@@ -10,7 +10,7 @@
 |-----------|--------|--------|-------------|
 | **The Bet** | M1 | [x] complete | `01-the-bet/` |
 | **The Moat** | M2 | [x] complete | `02-the-moat/` |
-| **The Margin** | M3 | [ ] | `03-the-margin/` |
+| **The Margin** | M3 | [x] complete | `03-the-margin/` |
 | **The Contract** | M4 | [ ] | `04-the-contract/` |
 | **The Guardrails** | M5 | [ ] | `05-the-guardrails/` |
 | **The Pitch** | M6 | [ ] | `06-the-pitch/` |
@@ -51,11 +51,11 @@
 
 **Will this make money or bleed it?**
 
-- **Gross Margin (current):**
-- **Gross Margin (AI-adjusted):**
-- **Pricing Model:**
-- **Cascading Strategy:**
-- **Break-even at:**
+- **Gross Margin (flat-seat baseline):** 86.1% ($42.20/seat), drops to 58.4% at 3x usage and 37.6% in the combined worst case (3x usage + 50% cost/request) — below the 40% floor
+- **Gross Margin (AI-adjusted, hybrid pricing):** 89.4% ($28,600/mo gross at 500 seats) — usage-based pricing raises margin % and gross $ simultaneously
+- **Pricing Model:** Hybrid — $19/seat/mo base + $15/confirmed catch (Maximize strategy); replaces a flat $49/seat baseline that left value on the table as usage grew
+- **Cascading Strategy:** 60% small / 25% mid / 15% frontier, routed by cost/latency/quality; blended cost $0.0034/request
+- **Break-even at:** Biggest margin risk is flat seat pricing against usage-scaling COGS — first lever is semantic caching on re-analysis triggers, second is the confirmed-catch pricing redesign
 
 → Details: [`03-the-margin/`](03-the-margin/)
 
