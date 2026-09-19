@@ -35,19 +35,21 @@
 
 ## Confidence UX Design
 
-**Approach:** Tiered confidence + human-in-loop trigger, combined — matches the existing product design (signature-gated safety flags are already an HITL trigger; Preference-loop suppression of denial-risk flags is already tiered confidence in practice).
+*Anchors: Grammarly's depth-of-rewrite (light touch when confident, more visible intervention when not) · Copilot's citations and softer tone when unsure.*
 
-**High confidence (>90%):** Flag shown with a clear severity stripe, category badge, and firm, non-hedging language ("This is a hard stop" tone for safety; "Suggested query" for denial-risk) — matches the current Chartguard prototype UI.
+**Approach:** Tiered confidence + human-in-loop trigger, combined (not "show uncertainty" alone) — matches the existing product design: signature-gated safety flags are already an HITL trigger, and Preference-loop suppression of denial-risk flags is already tiered confidence in practice.
 
-**Medium confidence (70-90%):** Language visibly softens — "Possible issue, please review" instead of "Suggested fix." Badge shifts to a lower-emphasis visual treatment, and the system now shows its reasoning/evidence snippet (e.g., "flagged because order X conflicts with allergy Y documented on [date]") so the clinician can judge for themselves, per the Trust ≠ Accuracy lecture's "legible system" principle.
+**CONFIDENT (>90%):** UI + copy when you're sure — flag shown with a clear severity stripe, category badge, and firm, non-hedging language ("This is a hard stop" tone for safety; "Suggested query" for denial-risk). Matches the current Chartguard prototype UI: no qualifiers, no "maybe."
 
-**Low confidence (<70%):** For safety-adjacent uncertain cases: never auto-suppress — route to a human reviewer queue (clinical safety/CDI on-call) instead of surfacing an unreliable flag directly to a busy clinician. For non-safety (denial-risk) cases: may not surface at all to avoid noise, but the case is logged for the weekly gold-set review.
+**UNCERTAIN (50-90%):** What visibly softens — language shifts from "Suggested fix" to "Possible issue, please review." The badge moves to a lower-emphasis visual treatment (muted color, no hard-stop framing), and the system now shows its reasoning/evidence snippet (e.g., "flagged because order X conflicts with allergy Y documented on [date]") so the clinician can judge for themselves — the Grammarly/Copilot anchor: more visible hedging as confidence drops, not a flat yes/no.
 
-**User control surface:**
-- Users adjust threshold? **Yes for denial-risk flags only.** Safety-flag thresholds are locked and non-adjustable by individual users — compliance-controlled, consistent with the existing design that suppression logic never applies to safety flags.
-- See AI reasoning? **Yes** — the evidence/source snippet driving the flag is always shown, not just the flag itself.
-- Correct & override? **Yes** — safety flags require acknowledgment + signature to dismiss (existing design); denial-risk flags allow a simple dismiss, still logged.
-- Corrections → model? **Yes, and this closes a known gap.** Module 2 scored the Correction loop 2/5 — signed dismissals were captured but never reused. This reliability contract commits to actually feeding both signed dismissals and reviewer corrections back into the weekly gold-set audit and threshold tuning (see Reliability Contract below).
+**NOT CONFIDENT (<50%):** Block · escalate · human queue — for safety-adjacent uncertain cases, never auto-suppress and never surface an unreliable flag directly to a busy clinician: route to a human reviewer queue (clinical safety/CDI on-call) instead. For non-safety (denial-risk) cases, don't surface at all (avoid noise) but log the case for the weekly gold-set review.
+
+**User Control Surface:**
+- Users adjust threshold? **Y — denial-risk flags only.** Safety-flag thresholds are locked and non-adjustable by individual users — compliance-controlled, consistent with the existing design that suppression logic never applies to safety flags.
+- See AI reasoning? **Y** — the evidence/source snippet driving the flag is always shown, not just the flag itself.
+- Correct & override? **Y** — safety flags require acknowledgment + signature to dismiss (existing design); denial-risk flags allow a simple dismiss, still logged.
+- Corrections → model? **Y, and this closes a known gap.** Module 2 scored the Correction loop 2/5 — signed dismissals were captured but never reused. This reliability contract commits to actually feeding both signed dismissals and reviewer corrections back into the weekly gold-set audit and threshold tuning (see Reliability Contract below).
 
 ## Reliability Contract
 
