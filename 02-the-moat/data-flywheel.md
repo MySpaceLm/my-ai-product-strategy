@@ -83,3 +83,19 @@
 - **Weeks 1-4:** Ship the cross-unit pipeline fast by reusing what already exists — point the exact detection-and-proposal mechanism powering the Network loop (5/5) inward, at units within one hospital, instead of only across hospitals. Not a new capability, an existing one repointed.
 - **Weeks 5-8:** Go to compliance with the validation story, not just the feature list. While DAX pitches "learns everywhere," Chartguard pitches "every pattern you see was proven safe and effective before it reached you — here's the audit trail." Get one documented case where a suppressed-false-positive or a caught safety conflict shows up favorably in an actual compliance review, and use it as reference.
 - **Weeks 9-12:** Close the OR/radiology gap DAX specifically targeted — prioritize per-unit tuning for exactly the units DAX picked as weakest. Killing their stated wedge directly is more convincing to users than a generic roadmap update.
+
+---
+
+## Extra Practice — Competitor Flywheel Comparison
+
+*Module 2 Extra Practice Exercise 1. Scores are informed estimates from public information about Nuance DAX Copilot (Microsoft) — not internal DAX data, which isn't public. Flagged as illustrative, same discipline as every other estimate in this repo.*
+
+| Loop | Chartguard | Nuance DAX (estimated) | Notes |
+|---|---|---|---|
+| Correction | 2/5 | 4/5 | DAX generates full note drafts, so every clinician edit is a high-volume, natural correction signal — and Microsoft's enterprise scale makes reuse for model improvement plausible, even though the exact mechanism isn't public. Chartguard has the same raw material (signed dismissals) but no reuse pipeline yet — this is the gap Horizon 1 closes. |
+| Preference | 5/5 | 4/5 | DAX adapts to a clinician's speech patterns and phrasing over time — real personalization. But Chartguard's mechanism is arguably more rigorous: a hard, non-negotiable exemption for safety flags from any suppression, which DAX's architecture (a scribe, not a safety-flag engine) doesn't need to solve at all. |
+| Domain Context | 1/5 | 3/5 | DAX's broad specialty coverage comes from model scale and general training, not a specific validated cross-unit transfer mechanism — so it's a different kind of advantage (breadth via scale) rather than a direct win on this exact loop. Still ahead of Chartguard's missing pipeline. |
+| Network | 5/5 | 5/5 | DAX likely wins on raw scale — it's deployed across a much larger hospital base than Chartguard's pilot. But Chartguard's mechanism (validated-pattern-only propagation, raw data never shared) is arguably more defensible to a compliance team than "the model learned from everywhere," which is exactly the counter-argument built into the 90-Day defense above. |
+| **Total** | **13/20** | **~16/20** | |
+
+**Honest read:** DAX likely outscores Chartguard on this scorecard today, mostly on scale and maturity, not because Chartguard's design choices are wrong. The two loops where Chartguard's *mechanism* is arguably stronger (Preference's safety exemption, Network's validation-before-sharing) are also the two loops the 90-Day defense above already leans on — this comparison confirms the defense is aimed at the right place, not a new finding that changes it.

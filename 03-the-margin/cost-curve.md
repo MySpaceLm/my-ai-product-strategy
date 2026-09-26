@@ -54,6 +54,19 @@
 **Routing rule:** Route by cost/latency/quality (per Module 2's live multi-model routing) — low-stakes checks default to triage tier; preference/suppression pattern checks route to a mid tier; anything touching a safety-critical flag routes to frontier
 **Expected cascade ratio:** 60% triage (small) / 25% mid / 15% frontier
 
+### Extra Practice — Re-Running the Cascade Ratio
+
+*Module 3 Extra Practice Exercise 1. The exercise names two-tier splits (60/40, 70/30, 80/20); mapped here to the second number as the frontier-tier share, redistributing the rest across small/mid at the current 70.6:29.4 proportion, holding cost/request per tier fixed.*
+
+| Frontier share | Small / Mid split | Blended cost/req | Monthly COGS/user | Gross margin/user | Gross margin % |
+|---|---|---|---|---|---|
+| 40% (60/40) | 42.4% / 17.6% | $0.00553 | $11.06 | $37.94 | 77.4% |
+| 30% (70/30) | 49.4% / 20.6% | $0.00492 | $9.84 | $39.16 | 79.9% |
+| 20% (80/20) | 56.5% / 23.5% | $0.00390 | $7.80 | $41.20 | 84.1% |
+| **15% (current)** | **60% / 25%** | **$0.0034** | **$6.80** | **$42.20** | **86.1%** |
+
+**Which split is healthiest, and why we're not switching to it:** margin rises monotonically as the frontier share shrinks — the 80/20 split (84.1%) beats every alternative tested except the current 15% split, which is already better still. That's not a reason to push frontier share down further: the 15% figure isn't an arbitrary dial, it reflects the real share of requests that are actually safety-critical and need frontier-tier reasoning to hit the <0.1% false-negative target in the Reliability Contract. Chasing margin by routing more safety-critical checks to cheaper tiers would trade a margin number for exactly the risk this whole repo is built to prevent. The real lever, confirmed by this exercise, stays semantic caching (cutting request *volume*), not shrinking the frontier tier's *share* below what quality requires.
+
 ## Pricing Model
 
 **Pricing strategy:** Maximize (Microsoft-style) — not Skim (too narrow for a hospital-wide rollout) or Penetrate (gives away margin on a genuinely differentiated, liability-reducing product). Chartguard needs broad adoption across all clinical seats, then monetize depth via the Network Intelligence add-on.
