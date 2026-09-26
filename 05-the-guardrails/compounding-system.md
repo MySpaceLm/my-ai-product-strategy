@@ -50,9 +50,21 @@
 
 **Chain — named owner per handoff:** If a hospital's live flag output depends on an upstream validated pattern from the Network Intelligence loop, the named owner is the clinical safety lead who approved that pattern's promotion to that hospital — not "the system."
 
+### Applied to a Real, Already-Live Workflow (Extra Practice Exercise 2)
+
+*The topology above covers a hypothetical future agent. This section applies the same four knobs to the one workflow in Chartguard that already behaves like an agent today: Network Intelligence's automated pattern-detection-and-proposal loop (Module 2, 5/5).*
+
+**Autonomy:** The loop can autonomously *detect* a candidate pattern from real-world outcomes and *draft* a rollout proposal. It cannot autonomously *push* a pattern live to a new hospital — detect-and-draft is fully automated; deploy is always a human decision (the clinical safety lead's sign-off, per the Autonomy boundaries above).
+
+**Tool Calls:** Read-only access to aggregated, de-identified pattern-outcome statistics across the hospital network (denial rates, safety-catch rates). Explicitly no access to any other hospital's raw per-patient records. No write access to any hospital's live rule set except through the sign-off gate — the loop can propose, never deploy itself.
+
+**Memory:** What persists — the validated pattern library (the "what works" knowledge) and a rollout history log (which hospital received which pattern, when, and who approved it). TTL — a candidate pattern's "under review" status expires after 90 days if never validated or approved, so the queue doesn't silently accumulate stale candidates. Who reads — the pattern-detection engine itself, the clinical safety lead reviewing candidates, and compliance/audit exports; no other Seha Hub module.
+
+**Chain:** If a pattern approved for Hospital A later causes a problem after being rolled out to Hospital B, the named owner is the clinical safety lead who approved *that specific rollout to Hospital B* — not the engine that detected the pattern, and not whoever approved it originally at Hospital A. Accountability follows the approval decision, not the detection event.
+
 ## Shadow AI Audit
 
-*Repo columns per the exercise: Tool = workaround · Owner = signal source · Risk = frequency · Decision = build / partner / ignore (the keep/govern/kill placeholder is overwritten below, per the M5 instructions).*
+*Repo columns per the exercise: Tool = workaround · Owner = signal source · Risk = frequency · Decision = build / partner / ignore (the keep/govern/kill placeholder is overwritten below, per the M5 instructions). Expanded from 5 to 10 per the Extra Practice exercise — the last 5 rows are the result of a simulated "search" of support-ticket language for ChatGPT, Claude, Zapier, and the named competitors already established in this repo (3M/Solventum, Nuance DAX).*
 
 | Tool (workaround) | Owner (signal) | Risk (frequency) | Decision |
 |------|-------|-----------|----------|
@@ -61,7 +73,12 @@
 | Nurses using ChatGPT or a Zapier recipe to auto-summarize long notes into shift-handoff bullets | Workflow gap — Chartguard has no handoff-summary output today | H | Build — natural extension of the existing Filler tier from Module 3 |
 | Physicians using a personal ambient-scribe subscription (DAX or similar) for dictation, since Chartguard only analyzes notes, it doesn't generate them | Capability gap — narrower scope than DAX by design (Module 2 positioning) | M/H | Partner — integrate the scribe's output as an input to Chartguard's flags instead of competing head-on; reinforces the "occupy the gap DAX doesn't fill" strategy |
 | Revenue-cycle/finance team building a manual spreadsheet to track how many denials Chartguard actually prevented | Capability gap — no native "confirmed catch" reporting dashboard, which the Module 3 outcome-based pricing model depends on | H | Build, urgently — this isn't optional; the hybrid pricing model can't be trusted or billed without it |
+| Physicians pasting a rare/unusual drug combination into ChatGPT because Chartguard's cascade routes it to the cheap tier and the rules aren't tuned for niche interactions | Capability gap — golden dataset and cascade rules under-cover rare-drug cases | M | Build — expand frontier-tier drug-interaction coverage and seed the golden dataset (Module 4) with rare-combination adversarial cases |
+| Support tickets asking for a Zapier connector to push Chartguard flags into the hospital's existing incident-reporting system (e.g. RL Datix/Midas) | Workflow gap — flags are trapped in-app, with no export into safety officers' existing reporting infrastructure | H | Build — a native integration is high strategic value and reuses the same data already flowing through the Reliability Contract's audit pipeline |
+| Coders re-running notes through the hospital's existing 3M/Solventum 360 Encompass license to double-check Chartguard's denial-risk flags | Trust gap — same underlying gap as the spreadsheet workaround above, but backed by an already-sanctioned tool's cost, not a new one | M | Ignore for now, same reasoning as above — note this is *not* new hidden spend, since 3M is already a licensed, sanctioned tool (see Module 1's diagnostic), just evidence the trust gap runs deeper than a single team |
+| Coders individually pasting ambiguous documentation into ChatGPT and asking it to draft a compliant physician query, since Chartguard flags the issue but doesn't draft the query text | Capability gap — matches a boundary already pre-approved in this file's Agent Topology (draft-only, human sends) | H | Build — the governance guardrail for this exact feature already exists, so building it is safe by design, not a new policy question |
+| Complaints that DAX-authored (ambient-scribed) notes trigger more denial-risk flags than physician-typed notes, because DAX's phrasing doesn't match Chartguard's CDI-specificity expectations | Workflow gap — an integration friction between two AI tools stacked on the same note, not a Chartguard capability gap on its own | M | Partner — work with Nuance/Microsoft on phrasing-pattern alignment, or add a "DAX-authored note" detection mode that adjusts flagging sensitivity accordingly |
 
-**Total tools found:** 5
-**Tools after triage (build candidates):** 3 (note-summarization, shift-handoff summaries, confirmed-catch reporting dashboard)
-**Estimated hidden spend:** ~$3,250/mo (illustrative) — ~$1,250/mo in informal ChatGPT/Claude seats among clinicians (~50 of 500 seats x ~$25/mo) + ~$2,000/mo in personal ambient-scribe subscriptions among physicians (~20 physicians x ~$100/mo); excludes the harder-to-quantify staff time lost to manual spreadsheet tracking
+**Total tools found:** 10
+**Tools after triage (build candidates):** 6 (note-summarization, shift-handoff summaries, confirmed-catch reporting dashboard, rare-drug-interaction coverage, incident-system integration, physician-query drafting)
+**Estimated hidden spend:** ~$3,675/mo (illustrative) — ~$1,250/mo in informal ChatGPT/Claude seats among clinicians (~50 of 500 seats x ~$25/mo) + ~$2,000/mo in personal ambient-scribe subscriptions among physicians (~20 physicians x ~$100/mo) + ~$375/mo in ChatGPT/Claude seats among CDI/coding staff (~15 x $25/mo) + ~$50/mo in a small team Zapier subscription; excludes the 3M re-check workaround (already-sanctioned spend, not shadow) and the harder-to-quantify staff time lost to manual spreadsheet tracking
