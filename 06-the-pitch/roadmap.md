@@ -88,6 +88,6 @@ Because it's a multi-quarter risk, not a 3-month one — Seha Hub building this 
 ## M1 Baseline vs. Now
 *Your 3-sentence AI strategy from Module 1 vs. what you'd say now:*
 
-**M1 baseline:** *(This was your private, individual warmup answer from the live Module 1 session — written before any framework landed. Add your own actual words here; it isn't something I can fill in for you, since the whole point is comparing your own before-and-after.)*
+**M1 baseline:** "Study the case in order to analyze the situation and support accordingly."
 
 **Now (drafted from the repo — adjust to your own voice before using):** We're not betting on a smarter model, we're betting on infrastructure competitors don't have yet: compliance-grade accountability, a validated cross-hospital learning loop, and a reliability contract with real teeth. The economics work, and we already found and fixed the one pricing flaw that would have broken them under real growth. The two things that could still hurt us — a stalled feedback loop and a knowledge silo between hospital units — are scoped, sequenced, and already on the roadmap, not surprises waiting to happen.
