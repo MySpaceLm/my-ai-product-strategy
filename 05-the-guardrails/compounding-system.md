@@ -21,23 +21,45 @@
 
 ## Governance Policy
 
-**Scope:**
+**Scope:** Covers Chartguard's flagging engine (safety + denial-risk), the Preference/suppression personalization layer, and the cross-hospital Network Intelligence pattern-propagation system. Explicitly does not cover Seha Hub's other native AI features outside the Chartguard module.
+
 **Autonomy boundaries:**
-**Escalation triggers:**
-**Audit cadence:**
-**Regulatory exposure (EU AI Act / other):**
+- **OK solo (no human needed):** denial-risk flags surfacing for clinician review (not auto-corrected); Preference-loop suppression of non-safety flags; Network Intelligence pattern *detection* across hospitals.
+- **Needs human:** any safety-flag dismissal (already signature-gated); Network Intelligence pattern *rollout* to a new hospital the first time (detection is automatic, but a pattern going live and changing what fires for clinicians at a new site requires clinical safety sign-off); any future agentic extension that would draft-and-send anything externally (see Agent Topology).
+
+**Escalation triggers:** Reuses the Module 4 Reliability Contract thresholds directly — confidence <60%, suspected safety-flag false negative, hallucination >1%, latency >1500ms, drift >1%/wk. All route to the rotating clinical safety/CDI on-call.
+
+**Audit cadence:** Weekly (matches the Module 4 gold-set audit and LangSmith regression cadence). Real-time for the safety-flag-engine auto-rollback conditions already defined in the Reliability Contract. Quarterly review of the Network Intelligence pattern library (what's been promoted across hospitals) and of this governance policy itself.
+
+**Regulatory exposure (EU AI Act / other):** HIPAA (patient data; see Memory below). Likely EU AI Act high-risk tier if deployed in EU health systems, given the safety-adjacent decision-support nature. Open question, not yet resolved: whether the safety-flag engine's degree of autonomy could bring it into Software-as-a-Medical-Device (SaMD/FDA) territory — flagged here rather than assumed either way.
+
+**Risk tier:** High.
 
 ## Agent Topology
 <!-- If using agents: what can each agent do? What can't it do? Who approves what? -->
 
+*Chartguard today flags, it doesn't act — no agentic extension is live. This topology is written now so any future agentic feature (e.g., auto-drafting a physician query or a denial appeal) has to be built inside these boundaries, not decided after the fact. Structured on the M5 agent-governance framework: Autonomy, Tool Calls, Memory, Chain.*
+
+**Autonomy — draft ≠ send:** A future agentic feature may draft a physician query or a denial-appeal letter. It may never submit, send, or message anything externally on its own. Draft-to-send is always a human action.
+
+**Tool Calls — whitelist, not open access:** Read-only access to pharmacy, lab, orders, and allergy data for cross-module reconciliation. No write access to the medical record. No external messaging or payer-submission API access, now or in any planned agentic extension, without a separate governance review.
+
+**Memory — what persists, TTL, who reads:** Per-clinician/unit suppression patterns and the validated cross-hospital pattern library persist. Suppression patterns are reviewed and expire if unused for 90 days. Only the flagging engine and compliance/audit exports can read this memory — no other Seha Hub module has access.
+
+**Chain — named owner per handoff:** If a hospital's live flag output depends on an upstream validated pattern from the Network Intelligence loop, the named owner is the clinical safety lead who approved that pattern's promotion to that hospital — not "the system."
+
 ## Shadow AI Audit
 
-| Tool | Owner | Risk Level | Decision |
-|------|-------|-----------|----------|
-| | | H / M / L | keep / govern / kill |
-| | | H / M / L | keep / govern / kill |
-| | | H / M / L | keep / govern / kill |
+*Repo columns per the exercise: Tool = workaround · Owner = signal source · Risk = frequency · Decision = build / partner / ignore (the keep/govern/kill placeholder is overwritten below, per the M5 instructions).*
 
-**Total tools found:**
-**Tools after triage:**
-**Estimated hidden spend:**
+| Tool (workaround) | Owner (signal) | Risk (frequency) | Decision |
+|------|-------|-----------|----------|
+| Clinicians pasting notes into ChatGPT/Claude directly for a quick second-opinion rewrite or summary | Capability gap — Chartguard flags issues but doesn't draft or rewrite notes | H | Build (and urgently ban raw PHI in consumer AI tools by policy until native summarization ships — this is a Samsung-path risk, not just a feature gap) |
+| CDI/coding staff keeping a parallel spreadsheet/macro-based denial tracker to cross-verify Chartguard's flags | Trust gap — a new tool without an established track record yet | M | Ignore for now — revisit once the Reliability Contract's weekly accuracy numbers accumulate a real history |
+| Nurses using ChatGPT or a Zapier recipe to auto-summarize long notes into shift-handoff bullets | Workflow gap — Chartguard has no handoff-summary output today | H | Build — natural extension of the existing Filler tier from Module 3 |
+| Physicians using a personal ambient-scribe subscription (DAX or similar) for dictation, since Chartguard only analyzes notes, it doesn't generate them | Capability gap — narrower scope than DAX by design (Module 2 positioning) | M/H | Partner — integrate the scribe's output as an input to Chartguard's flags instead of competing head-on; reinforces the "occupy the gap DAX doesn't fill" strategy |
+| Revenue-cycle/finance team building a manual spreadsheet to track how many denials Chartguard actually prevented | Capability gap — no native "confirmed catch" reporting dashboard, which the Module 3 outcome-based pricing model depends on | H | Build, urgently — this isn't optional; the hybrid pricing model can't be trusted or billed without it |
+
+**Total tools found:** 5
+**Tools after triage (build candidates):** 3 (note-summarization, shift-handoff summaries, confirmed-catch reporting dashboard)
+**Estimated hidden spend:** ~$3,250/mo (illustrative) — ~$1,250/mo in informal ChatGPT/Claude seats among clinicians (~50 of 500 seats x ~$25/mo) + ~$2,000/mo in personal ambient-scribe subscriptions among physicians (~20 physicians x ~$100/mo); excludes the harder-to-quantify staff time lost to manual spreadsheet tracking

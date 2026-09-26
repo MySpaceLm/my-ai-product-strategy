@@ -12,7 +12,7 @@
 | **The Moat** | M2 | [x] complete | `02-the-moat/` |
 | **The Margin** | M3 | [x] complete | `03-the-margin/` |
 | **The Contract** | M4 | [x] complete | `04-the-contract/` |
-| **The Guardrails** | M5 | [ ] | `05-the-guardrails/` |
+| **The Guardrails** | M5 | [x] complete | `05-the-guardrails/` |
 | **The Pitch** | M6 | [ ] | `06-the-pitch/` |
 
 ---
@@ -79,11 +79,11 @@
 
 **What breaks when this scales — and what compounds.**
 
-- **Compounding System:** [describe feedback loops]
-- **Governance Posture:** [approach]
-- **Shadow AI Status:** __ tools found, __ triaged
-- **Agent Boundaries:**
-- **Regulatory Exposure:**
+- **Compounding System:** 2 of 3 loops active/compounding — Preference (recursive learning, suppression) and Network Intelligence both live infrastructure; Cross-Domain Transfer missing; Recursive Learning at the model level broken (captured but not reused). Freeze test: partial pass.
+- **Governance Posture:** Draft-not-send autonomy, whitelisted read-only tool calls, TTL'd memory, named-owner chain handoffs — reuses the M4 Reliability Contract's escalation thresholds directly rather than inventing new ones
+- **Shadow AI Status:** 5 tools found, 3 triaged to build (note summarization, shift-handoff summaries, confirmed-catch reporting — the last one is urgent since the M3 pricing model depends on it)
+- **Agent Boundaries:** No live agentic extension today; topology pre-defined for when one ships — read-only chart access, no write access to the record, no external send/submit without human approval
+- **Regulatory Exposure:** HIPAA (patient data), likely EU AI Act high-risk tier; open question on SaMD/FDA territory, flagged rather than assumed
 
 → Details: [`05-the-guardrails/`](05-the-guardrails/)
 
