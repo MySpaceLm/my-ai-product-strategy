@@ -29,11 +29,13 @@
 
 **Escalation triggers:** Reuses the Module 4 Reliability Contract thresholds directly — confidence <60%, suspected safety-flag false negative, hallucination >1%, latency >1500ms, drift >1%/wk. All route to the rotating clinical safety/CDI on-call.
 
-**Audit cadence:** Weekly (matches the Module 4 gold-set audit and LangSmith regression cadence). Real-time for the safety-flag-engine auto-rollback conditions already defined in the Reliability Contract. Quarterly review of the Network Intelligence pattern library (what's been promoted across hospitals) and of this governance policy itself.
+**Audit cadence:** Not purely calendar-based — event-triggered first, calendar as the floor. Re-review is mandatory whenever: the flag-generation model changes, prompts change, a new data source or tool is integrated (e.g. a new EHR module feeds the reconciliation engine), or a regulatory change lands (e.g. an EU AI Act update). On top of that, a weekly cadence matches the Module 4 gold-set audit and LangSmith regression run; real-time for the safety-flag-engine auto-rollback conditions already defined in the Reliability Contract; quarterly for the Network Intelligence pattern library and for this governance policy itself.
 
-**Regulatory exposure (EU AI Act / other):** HIPAA (patient data; see Memory below). Likely EU AI Act high-risk tier if deployed in EU health systems, given the safety-adjacent decision-support nature. Open question, not yet resolved: whether the safety-flag engine's degree of autonomy could bring it into Software-as-a-Medical-Device (SaMD/FDA) territory — flagged here rather than assumed either way.
+**Regulatory exposure (EU AI Act / other):** HIPAA (patient data; see Memory below). Likely EU AI Act high-risk tier if deployed in EU health systems, given the safety-adjacent decision-support nature. Open question, not yet resolved: whether the safety-flag engine's degree of autonomy could bring it into Software-as-a-Medical-Device (SaMD/FDA) territory — flagged here rather than assumed either way. This is an initial product-level assessment, not a legal determination.
 
 **Risk tier:** High.
+
+**Immediate stop authority:** The rotating clinical safety/CDI on-call (the same role named throughout the Reliability Contract and HITL Architecture) can halt the safety-flag engine immediately — this is the same auto-rollback mechanism already wired to the Reliability Contract's alert thresholds, but it is also a standing manual authority, not only an automated one. No engineering approval or deploy cycle is required to pull that switch.
 
 ## Agent Topology
 <!-- If using agents: what can each agent do? What can't it do? Who approves what? -->
