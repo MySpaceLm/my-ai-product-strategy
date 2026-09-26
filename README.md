@@ -13,7 +13,7 @@
 | **The Margin** | M3 | [x] complete | `03-the-margin/` |
 | **The Contract** | M4 | [x] complete | `04-the-contract/` |
 | **The Guardrails** | M5 | [x] complete | `05-the-guardrails/` |
-| **The Pitch** | M6 | [ ] | `06-the-pitch/` |
+| **The Pitch** | M6 | [x] complete | `06-the-pitch/` |
 
 ---
 
@@ -81,7 +81,7 @@
 
 - **Compounding System:** 2 of 3 loops active/compounding — Preference (recursive learning, suppression) and Network Intelligence both live infrastructure; Cross-Domain Transfer missing; Recursive Learning at the model level broken (captured but not reused). Freeze test: partial pass.
 - **Governance Posture:** Draft-not-send autonomy, whitelisted read-only tool calls, TTL'd memory, named-owner chain handoffs — reuses the M4 Reliability Contract's escalation thresholds directly rather than inventing new ones
-- **Shadow AI Status:** 5 tools found, 3 triaged to build (note summarization, shift-handoff summaries, confirmed-catch reporting — the last one is urgent since the M3 pricing model depends on it)
+- **Shadow AI Status:** 10 tools found, 6 triaged to build (note summarization, shift-handoff summaries, confirmed-catch reporting, rare-drug-interaction coverage, incident-system integration, physician-query drafting) — confirmed-catch reporting is urgent since the M3 pricing model depends on it
 - **Agent Boundaries:** No live agentic extension today; topology pre-defined for when one ships — read-only chart access, no write access to the record, no external send/submit without human approval
 - **Regulatory Exposure:** HIPAA (patient data), likely EU AI Act high-risk tier; open question on SaMD/FDA territory, flagged rather than assumed
 
@@ -93,10 +93,12 @@
 
 **How you get this funded, shipped, and adopted.**
 
-- **Horizon 1 (Now):**
-- **Horizon 2 (Next):**
-- **Horizon 3 (Bet):**
-- **Board Narrative:** [1-sentence thesis]
-- **Key Metric:**
+- **Horizon 1 (Now):** Kill Switch drill, semantic caching, Correction-loop retraining pipeline, confirmed-catch dashboard, golden dataset expansion — all shippable with existing capabilities
+- **Horizon 2 (Next):** Cross-Domain Transfer, incident-system integration, physician-query drafting, SaMD/FDA determination — each with a named kill criterion
+- **Horizon 3 (Bet):** Multi-facility Network Intelligence rollout, DAX/Nuance partnership, Chartguard as Seha Hub's default reference layer
+- **Board Narrative:** Chartguard is already differentiated on reliability infrastructure, not just model quality — the fastest way to protect margin as usage scales is closing two already-scoped engineering gaps and shipping the pricing fix already designed
+- **Key Metric:** Combined-stress gross margin (currently 37.6%, below the 40% floor) rising back above 40% once Horizon 1 ships
+
+→ Details: [`06-the-pitch/`](06-the-pitch/)
 
 → Details: [`06-the-pitch/`](06-the-pitch/)
